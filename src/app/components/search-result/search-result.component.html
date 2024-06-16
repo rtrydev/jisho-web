@@ -1,0 +1,36 @@
+<form #searchForm class="form-group d-flex flex-nowrap flex-row justify-content-center mt-4 mb-2" (submit)="performSearch()">
+    <div class="search-border mx-2">
+        <textarea
+            #searchInput
+            [(ngModel)]="searchQuery"
+            name="searchQueryInput"
+            placeholder="Type your query here..."
+            rows="1"
+            class="form-control search-input m-1"
+        ></textarea>
+    </div>
+    <button class="btn btn-primary search-button px-3" style="width: 82px;" type="submit" [disabled]="isLoadingQueryResult">
+        @if (isLoadingQueryResult) {
+            <div class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status"></div>
+        } @else {
+            Search
+        }
+    </button>
+</form>
+
+@for (entry of loadedEntries(); track entry.word) {
+    <div class="m-4">
+        <app-dictionary-entry-view [entry]="entry"></app-dictionary-entry-view>
+    </div>
+} @empty {
+    @if (isLoadingQueryResult) {
+        <div class="text-center loading-text">
+            <h2 class="m-3">Loading</h2>
+            <div class="spinner-border text-light" style="width: 2rem; height: 2rem;" role="status"></div>
+        </div>
+    } @else {
+        <div class="text-center loading-text">
+            <h2 class="m-3">No results found.</h2>
+        </div>
+    }
+}

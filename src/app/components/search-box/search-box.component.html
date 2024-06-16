@@ -1,0 +1,22 @@
+<div class="search-box">
+    <div class="search-logo">辞書</div>
+    <form #searchForm class="form-group d-flex flex-nowrap flex-row" (submit)="performSearch()">
+        <div class="search-border mx-2">
+            <textarea
+                #searchInput
+                [(ngModel)]="searchQuery"
+                name="searchQueryInput"
+                placeholder="Type your query here..."
+                rows="1"
+                class="form-control search-input m-1"
+            ></textarea>
+        </div>
+        <button class="btn btn-primary search-button px-3" style="width: 82px;" type="submit" [disabled]="isLoadingQueryResult">
+            @if (isLoadingQueryResult) {
+                <div class="spinner-border text-light" style="width: 1rem; height: 1rem;" role="status"></div>
+            } @else {
+                Search
+            }
+        </button>
+    </form>
+</div>
