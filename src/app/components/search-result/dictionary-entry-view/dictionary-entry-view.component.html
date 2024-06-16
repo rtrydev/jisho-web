@@ -7,7 +7,7 @@
 <span><b>Examples:</b></span>
 <ul>
     @for (example of entry.example_sentences; track $index) {
-        <li>{{example.sentence}} ({{example.translation}})</li>
+        <li><span [innerHTML]="example.sentence | appendHints:example.reading_hints"></span> ({{example.translation}})</li>
     } @empty {
         No examples for this entry :(
     }

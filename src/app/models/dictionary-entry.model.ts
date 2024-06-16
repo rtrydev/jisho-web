@@ -4,6 +4,10 @@ export interface DictionaryEntry {
     reading: string;
     example_sentences: {
         sentence: string;
+        reading_hints: {
+            word: string;
+            reading: string
+        }[];
         translation: string;
     }[];
 }
